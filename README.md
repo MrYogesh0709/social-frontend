@@ -25,7 +25,7 @@ Install my-project with npm
 - Authentication With Forgot Password API
 
 
-## For Backend Of Socail-APP
+## For Backend Of Social-APP
 
 https://github.com/MrYogesh0709/social-backend
 
