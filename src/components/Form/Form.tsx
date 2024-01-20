@@ -2,7 +2,6 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getUserFromLocalStorage } from "../../app/localStorage";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 import {
   createPostAsync,
   selectPosts,
@@ -22,9 +21,6 @@ type FormPropsTypes = {
 
 const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
   const user = getUserFromLocalStorage();
-  const { status } = useSelector(selectPosts);
-  const dispatch = useDispatch();
-
   const [postData, setPostData] = useState<PostType>({
     title: "",
     message: "",
@@ -176,7 +172,7 @@ const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
           type="submit"
           fullWidth
         >
-          {status === "loading" ? "Uploading..." : "Submit"}
+          Submit
         </Button>
         <Button
           variant="contained"
