@@ -136,7 +136,6 @@ export const postSlice = createSlice({
         );
       })
       .addCase(deletePostAsync.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.status = "idle";
         state.error = "";
         state.posts = state.posts.filter((post) => post._id !== payload.postId);

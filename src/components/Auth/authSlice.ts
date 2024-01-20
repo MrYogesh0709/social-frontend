@@ -70,7 +70,6 @@ export const authSlice = createSlice({
         toast.success("Signup Successfully");
       })
       .addCase(createUserAsync.rejected, (state, { payload }) => {
-        console.log(payload);
         state.status = "failed";
         state.error = (payload as { msg: string }).msg;
         toast.error(
