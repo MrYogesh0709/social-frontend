@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Social Application
 
-Currently, two official plugins are available:
+Social Application With react+vite (Typescript) Project with Redux-toolkit for handling state. And MUI (Material UI) for responsive Application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+https://social-app-vite.netlify.app
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+Install my-project with npm
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+  npm install social-frontend
+  cd social-frontend
+  npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Features
+
+- React+vite+Typescript
+- Material UI Responsive Design
+- CRUD operation for Post 
+- Authentication With Forgot Password API
+
+
+## For Backend Of Socail-APP
+
+https://github.com/MrYogesh0709/social-backend
+
+
+## 🚀 About Me
+
+I'm a full stack developer...
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at yogeshvanzara98@gmail.com
+
