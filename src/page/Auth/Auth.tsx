@@ -42,6 +42,20 @@ const Auth = () => {
   const [formData, setFormData] = useState<authType>(initialState);
   const { status } = useSelector(selectAuth);
   const user = getUserFromLocalStorage();
+
+  const switchMode = () => {
+    setIsSignUp((prev) => !prev);
+  };
+  const handleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isSignUp && (!formData.email || !formData.password)) {
@@ -66,35 +80,26 @@ const Auth = () => {
       try {
         // @ts-ignore
         dispatch(createUserAsync(formData));
-        setFormData(() => initialState);
+        setFormData(initialState);
       } catch (error) {
         console.log(error);
       }
+      e.currentTarget.reset();
     } else {
       try {
         // @ts-ignore
         dispatch(loginUserAsync(formData));
-        setFormData(() => initialState);
+        setFormData(initialState);
       } catch (error) {
         console.log(error);
       }
+      e.currentTarget.reset();
     }
   };
+
   if (user) {
     return <Navigate to="/posts" replace={true} />;
   }
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handleShowPassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-  const switchMode = () => {
-    setIsSignUp((prev) => !prev);
-  };
 
   return (
     <Zoom in={true}>
