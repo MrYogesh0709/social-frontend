@@ -1,8 +1,9 @@
 import { Container, Grid, Grow } from "@mui/material";
 import { useState } from "react";
-
 import Posts from "../../components/Posts/Posts";
 import Form from "../../components/Form/Form";
+import { getUserFromLocalStorage } from "../../app/localStorage";
+
 const styles = [
   "font-size: 20px",
   "text-transform: uppercase",
@@ -11,12 +12,17 @@ const styles = [
   "padding: 8px",
   "border-radius: 4px",
 ].join(";");
+
 const Home = () => {
+  const user = getUserFromLocalStorage();
   const [currentId, setCurrentId] = useState<string>("");
   console.log(
-    `%c Hello User. Service hosted on Render may take some time to load data.`,
+    `%c Hello ${
+      user ? user?.result?.name : "USER"
+    } Service hosted on Render may take some time to load data.`,
     styles
   );
+
   return (
     <Grow in>
       <Container maxWidth="xl">
