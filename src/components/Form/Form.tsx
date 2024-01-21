@@ -8,6 +8,7 @@ import {
   updatePostAsync,
 } from "../Posts/postSlice";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 type PostType = {
   title: string;
@@ -21,6 +22,7 @@ type FormPropsTypes = {
 
 const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
   const user = getUserFromLocalStorage();
+  const dispatch = useDispatch();
   const [postData, setPostData] = useState<PostType>({
     title: "",
     message: "",
