@@ -3,10 +3,10 @@
 
 Social Application With react+vite (Typescript) Project with Redux-toolkit for handling state. And MUI (Material UI) for responsive Application
 
-
 ## Demo
 
 https://social-app-vite.netlify.app
+
 ## Installation
 
 Install my-project with npm
@@ -23,17 +23,15 @@ Install my-project with npm
 - Material UI Responsive Design
 - CRUD operation for Post 
 - Authentication With Forgot Password API
-
+- Hosted on Render May Take Some time to load data
 
 ## For Backend Of Social-APP
 
 https://github.com/MrYogesh0709/social-backend
 
-
 ## 🚀 About Me
 
 I'm a full stack developer...
-
 
 ## Feedback
 
