@@ -3,7 +3,6 @@ import { LockOutlined } from "@mui/icons-material";
 import {
   Avatar,
   Button,
-  CircularProgress,
   Container,
   Grid,
   Paper,
@@ -54,7 +53,7 @@ const Auth = () => {
       (!formData.email ||
         !formData.password ||
         !formData.confirmPassword ||
-        !formData.email)
+        !formData.name)
     ) {
       toast.error("Please Provide all Fields");
       return;
@@ -97,13 +96,7 @@ const Auth = () => {
     setIsSignUp((prev) => !prev);
   };
 
-  return status === "loading" ? (
-    <Zoom in={true}>
-      <Container>
-        <CircularProgress size="5rem" />
-      </Container>
-    </Zoom>
-  ) : (
+  return (
     <Zoom in={true}>
       <Container component="main" maxWidth="xs">
         <Paper
