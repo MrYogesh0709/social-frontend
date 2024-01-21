@@ -15,6 +15,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { getUserFromLocalStorage } from "../../../app/localStorage";
@@ -73,7 +74,10 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
   const openPost = () => {
     navigate(`/posts/${post._id}`);
   };
-
+  const handleEditClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentId(post._id);
+  };
   return (
     <Card
       raised
@@ -143,19 +147,18 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
           justifyContent: "space-between",
         }}
       >
-        <Box>
-          {user?.result?.id === post?.creator?._id && (
-            <div>
-              <Button
-                style={{ color: "black" }}
-                size="small"
-                onClick={() => setCurrentId(post._id)}
-              >
-                <MoreHorizRounded fontSize="medium" />
-              </Button>
-            </div>
-          )}
-        </Box>
+        {user?.result?.id === post?.creator?._id && (
+          <Tooltip title="Edit Post">
+            <Button
+              style={{ color: "black" }}
+              size="small"
+              // onClick={() => setCurrentId(post._id)}
+              onClick={handleEditClick}
+            >
+              <MoreHorizRounded fontSize="medium" />
+            </Button>
+          </Tooltip>
+        )}
 
         <Box>
           <Button
@@ -167,15 +170,17 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
             <Likes />
           </Button>
           {user?.result?.id === post?.creator?._id && (
-            <Button
-              size="small"
-              color="primary"
-              // @ts-ignore
-              onClick={() => dispatch(deletePostAsync(post._id))}
-            >
-              <Delete fontSize="small" />
-              delete
-            </Button>
+            <Tooltip title="Delete">
+              <Button
+                size="small"
+                color="primary"
+                // @ts-ignore
+                onClick={() => dispatch(deletePostAsync(post._id))}
+              >
+                <Delete fontSize="small" />
+                delete
+              </Button>
+            </Tooltip>
           )}
         </Box>
       </CardActions>

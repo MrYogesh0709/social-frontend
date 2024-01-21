@@ -19,7 +19,6 @@ type FormPropsTypes = {
   currentId: string;
   setCurrentId: React.Dispatch<React.SetStateAction<string>>;
 };
-
 const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
   const user = getUserFromLocalStorage();
   const dispatch = useDispatch();
@@ -58,8 +57,12 @@ const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
       }
     }
     if (!currentId) {
-      if (!postData.title || !postData.message || !postData.selectedFile) {
+      if (!postData.title || !postData.message) {
         toast.error("Please select all details");
+        return;
+      }
+      if (!postData.selectedFile) {
+        toast.error("Please Select File");
         return;
       }
     }
@@ -173,6 +176,7 @@ const Form = ({ currentId, setCurrentId }: FormPropsTypes) => {
           size="large"
           type="submit"
           fullWidth
+          disabled={!postData.title || !postData.message}
         >
           Submit
         </Button>

@@ -7,7 +7,7 @@ import { getUserFromLocalStorage } from "../../app/localStorage";
 const styles = [
   "font-size: 20px",
   "text-transform: uppercase",
-  "background: linear-gradient(to right, #30cfd0, #330867);",
+  "background: linear-gradient(to right, #30cfd0, red);",
   "color: white",
   "padding: 8px",
   "border-radius: 4px",
@@ -36,7 +36,7 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={9} sx={{ m: "auto" }}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          {/* TODO:make it right  */}
+          {/* TODO:make it right change some UI  */}
           <Grid item xs={12} sm={6} md={3}>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
           </Grid>
