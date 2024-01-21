@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import Input from "../../components/Auth/Input";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import {
@@ -68,6 +68,9 @@ const ResetPassword = () => {
       console.log(error);
     }
   };
+  if (!query.get("token") || !query.get("email")) {
+    return <Navigate to="/"></Navigate>;
+  }
   return status === "loading" ? (
     <Grow in>
       <Container
