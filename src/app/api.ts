@@ -2,7 +2,9 @@ import axios, { AxiosError } from "axios";
 import { getUserFromLocalStorage } from "./localStorage";
 
 const api = axios.create({
-  baseURL: "https://social-3k7h.onrender.com/api/v1",
+  // baseURL: "https://social-3k7h.onrender.com/api/v1",
+  baseURL: "https://cooperative-teal-stingray.cyclic.app/api/v1",
+  // baseURL: "http://localhost:5000/api/v1",
   headers: {
     "Content-Type": "application/json",
   },

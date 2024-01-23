@@ -135,12 +135,15 @@ const Navbar = () => {
             <Tooltip title={`${user ? "Open settings" : "Sign In"}`}>
               <IconButton onClick={handleOpenUserMenu}>
                 {user ? (
-                  <Avatar alt={user.result?.name}>
+                  <Avatar
+                    alt={user.result?.name}
+                    sx={{ background: "white", color: "blue" }}
+                  >
                     {user?.result?.name?.charAt(0)?.toUpperCase()}
                   </Avatar>
                 ) : (
-                  <Avatar>
-                    <LoginIcon />
+                  <Avatar sx={{ background: "white" }}>
+                    <LoginIcon color="success" />
                   </Avatar>
                 )}
               </IconButton>

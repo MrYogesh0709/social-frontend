@@ -54,7 +54,7 @@ const PostDetails = () => {
 
   return (
     <Grow in>
-      <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
+      <Box sx={{ p: 2 }}>
         <Box
           sx={{
             display: "grid",
@@ -62,12 +62,7 @@ const PostDetails = () => {
             gap: "2rem",
           }}
         >
-          <Box
-            sx={{
-              marginLeft: { xs: "20px", sm: 0 },
-              display: "flex",
-            }}
-          >
+          <Box>
             <img
               style={{
                 borderRadius: "20px",
@@ -104,12 +99,10 @@ const PostDetails = () => {
               {moment(post?.createdAt).fromNow()}
             </Typography>
             <Divider style={{ margin: "20px 0" }} />
-            <Divider style={{ margin: "20px 0" }} />
-            <Divider style={{ margin: "20px 0" }} />
           </Box>
         </Box>
         <CommentSection post={post} />
-      </Paper>
+      </Box>
     </Grow>
   );
 };

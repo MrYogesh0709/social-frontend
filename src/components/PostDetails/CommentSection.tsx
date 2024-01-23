@@ -3,6 +3,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { PostType, commentPostAsync } from "../Posts/postSlice";
 import { getUserFromLocalStorage } from "../../app/localStorage";
 import { useDispatch } from "react-redux";
+import { Send } from "@mui/icons-material";
 
 type CommentPropType = {
   post: PostType | null;
@@ -39,10 +40,7 @@ const CommentSection = ({ post }: CommentPropType) => {
           flexDirection: "column",
         }}
       >
-        <Box sx={{ height: "200px", overflowY: "auto", marginRight: "30px" }}>
-          <Typography gutterBottom variant="h6">
-            Comments
-          </Typography>
+        <Box sx={{ maxHeight: "500px", overflowY: "auto", py: 2 }}>
           {!!post?.comments &&
             post.comments.map((c, i) => (
               <Typography key={i} gutterBottom variant="subtitle1">
@@ -53,30 +51,32 @@ const CommentSection = ({ post }: CommentPropType) => {
           <div ref={commentsRef} />
         </Box>
         {user?.result?.name && (
-          <div style={{ width: "70%" }}>
-            <Typography gutterBottom variant="h6">
-              Write a comment
-            </Typography>
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <TextField
               fullWidth
-              minRows={4}
+              minRows={1}
               variant="outlined"
-              label="Comment"
+              label="Add Your comment Here"
               multiline
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              sx={{ marginRight: "10px" }}
             />
-            <Button
-              style={{ marginTop: "10px" }}
-              fullWidth
-              disabled={!comment}
-              variant="contained"
-              onClick={handleClick}
-              color="primary"
-            >
-              Comment
-            </Button>
-          </div>
+            {comment && (
+              <Button
+                style={{ position: "absolute", right: "0px", bottom: "10px" }}
+                onClick={handleClick}
+              >
+                <Send />
+              </Button>
+            )}
+          </Box>
         )}
       </Box>
     </>
