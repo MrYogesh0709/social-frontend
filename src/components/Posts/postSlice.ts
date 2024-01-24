@@ -30,6 +30,7 @@ type InitialStateType = {
   error: string;
   msg: string;
   totalPages: number;
+  hasNextPage: boolean;
 };
 
 const initialState: InitialStateType = {
@@ -39,6 +40,7 @@ const initialState: InitialStateType = {
   error: "",
   msg: "",
   totalPages: 0,
+  hasNextPage: false,
 };
 
 export const getAllPostsAsync = createAsyncThunk(
@@ -85,7 +87,8 @@ export const postSlice = createSlice({
         state.status = "idle";
         state.error = "";
         state.totalPages = payload.numberOfPages;
-        state.posts = payload.data;
+        state.posts = [...state.posts, ...payload.data];
+        state.hasNextPage = Boolean(payload.data.length);
       })
       .addCase(getAllPostsAsync.rejected, (state, { payload }) => {
         state.status = "failed";
