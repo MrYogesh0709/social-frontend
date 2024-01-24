@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { PostType, getAllPostsAsync, selectPosts } from "./postSlice";
@@ -9,8 +9,7 @@ const Posts = () => {
   const dispatch = useDispatch();
   const { posts, status } = useSelector(selectPosts);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [page, setPage] = useState(1);
-
+  const page = 1;
   useEffect(() => {
     // @ts-ignore
     dispatch(getAllPostsAsync(page));
