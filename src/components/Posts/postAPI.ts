@@ -1,9 +1,9 @@
 import api from "../../app/api";
 
 //@ts-ignore
-export const getAllPosts = async (_, thunkAPI) => {
+export const getAllPosts = async (page, thunkAPI) => {
   try {
-    const { data } = await api("/post");
+    const { data } = await api(`/post?page=${page}`);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

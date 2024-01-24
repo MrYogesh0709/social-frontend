@@ -12,12 +12,11 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import AdbIcon from "@mui/icons-material/Adb";
-import LoginIcon from "@mui/icons-material/Login";
 import { jwtDecode } from "jwt-decode";
 import { getUserFromLocalStorage } from "../../app/localStorage";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../Auth/authSlice";
+import { Logout, Login, Adb } from "@mui/icons-material";
 
 export type User = {
   result: { name: string; email: string; id: string };
@@ -71,6 +70,10 @@ const Navbar = () => {
     navigate("/auth");
   };
 
+  const createPost = () => {
+    navigate("/posts/create");
+  };
+
   return (
     <AppBar position="sticky" sx={{ mb: 2 }}>
       <Container maxWidth="xl">
@@ -79,7 +82,7 @@ const Navbar = () => {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           <Link to="/" style={{ color: "inherit" }}>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Adb sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           </Link>
           <Link to="/" style={{ color: "inherit" }}>
             <Typography
@@ -110,7 +113,7 @@ const Navbar = () => {
               mr: 1,
             }}
           >
-            <AdbIcon />
+            <Adb />
           </IconButton>
 
           <Typography
@@ -142,33 +145,56 @@ const Navbar = () => {
                     {user?.result?.name?.charAt(0)?.toUpperCase()}
                   </Avatar>
                 ) : (
-                  <Avatar sx={{ background: "white" }}>
-                    <LoginIcon color="success" />
+                  <Avatar
+                    component={Link}
+                    to="/auth"
+                    sx={{ background: "white" }}
+                  >
+                    <Login color="success" />
                   </Avatar>
                 )}
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {user ? (
+            {user && (
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
                 <MenuItem
                   onClick={() => {
                     handleCloseUserMenu();
                     setUser(null);
+                  }}
+                >
+                  <Typography
+                    textAlign="center"
+                    onClick={createPost}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                  >
+                    Create Post
+                  </Typography>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    setUser(null);
+                  }}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
                   <Typography
@@ -178,20 +204,10 @@ const Navbar = () => {
                   >
                     Logout
                   </Typography>
+                  <Logout />
                 </MenuItem>
-              ) : (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    component={Link}
-                    to="/auth"
-                    style={{ color: "inherit", textDecoration: "inherit" }}
-                  >
-                    Sign In
-                  </Typography>
-                </MenuItem>
-              )}
-            </Menu>
+              </Menu>
+            )}
           </Box>
         </Toolbar>
       </Container>

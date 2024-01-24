@@ -24,10 +24,9 @@ import { useDispatch } from "react-redux";
 
 type SinglePost = {
   post: PostType;
-  setCurrentId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Post = ({ post, setCurrentId }: SinglePost) => {
+const Post = ({ post }: SinglePost) => {
   const user = getUserFromLocalStorage();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -74,9 +73,9 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
   const openPost = () => {
     navigate(`/posts/${post._id}`);
   };
+
   const handleEditClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setCurrentId(post._id);
+    navigate({ pathname: `/posts/edit/${post._id}` }, { state: post });
   };
   return (
     <Card
@@ -141,7 +140,6 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
 
       <CardActions
         sx={{
-          padding: "0 16px 8px 16px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -152,7 +150,6 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
             <Button
               style={{ color: "black" }}
               size="small"
-              // onClick={() => setCurrentId(post._id)}
               onClick={handleEditClick}
             >
               <MoreHorizRounded fontSize="medium" />
@@ -160,7 +157,7 @@ const Post = ({ post, setCurrentId }: SinglePost) => {
           </Tooltip>
         )}
 
-        <Box>
+        <Box sx={{ ml: "auto" }}>
           <Button
             size="small"
             color="primary"

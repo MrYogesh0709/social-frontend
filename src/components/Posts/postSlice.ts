@@ -29,6 +29,7 @@ type InitialStateType = {
   status: string;
   error: string;
   msg: string;
+  totalPages: number;
 };
 
 const initialState: InitialStateType = {
@@ -37,11 +38,12 @@ const initialState: InitialStateType = {
   singlePost: null,
   error: "",
   msg: "",
+  totalPages: 0,
 };
 
 export const getAllPostsAsync = createAsyncThunk(
   "auth/getAllPosts",
-  async (_, thunkAPI) => await getAllPosts(_, thunkAPI)
+  async (page, thunkAPI) => await getAllPosts(page, thunkAPI)
 );
 export const getSinglePostAsync = createAsyncThunk(
   "auth/getSinglePost",
@@ -82,6 +84,7 @@ export const postSlice = createSlice({
       .addCase(getAllPostsAsync.fulfilled, (state, { payload }) => {
         state.status = "idle";
         state.error = "";
+        state.totalPages = payload.numberOfPages;
         state.posts = payload.data;
       })
       .addCase(getAllPostsAsync.rejected, (state, { payload }) => {
